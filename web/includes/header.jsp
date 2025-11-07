@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QLY Bán Hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css?v=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
@@ -21,9 +21,9 @@
         </a>
 
         <ul class="nav mb-2 justify-content-center mb-md-0">
-            <li><a href="index.jsp" class="nav-link px-2 link-secondary">Trang chủ</a></li>
-            <li><a href="products.jsp" class="nav-link px-2 link-dark">Sản phẩm</a></li>
-            <li><a href="contact.jsp" class="nav-link px-2 link-dark">Liên hệ</a></li>
+            <li><a href="index.jsp" class="nav-link px-2 ">Trang chủ</a></li>
+            <li><a href="products.jsp" class="nav-link px-2 ">Sản phẩm</a></li>
+            <li><a href="contact.jsp" class="nav-link px-2 ">Liên hệ</a></li>
         </ul>
 
         <div class="text-end d-flex align-items-center">

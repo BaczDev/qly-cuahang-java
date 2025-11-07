@@ -58,3 +58,33 @@ a.text-decoration-none:hover {
     display: flex;
     flex-direction: column;
 }
+/* Áp dụng cho tất cả link trong menu */
+header .nav-link {
+    position: relative;
+    color: #000 !important;     /* luôn là màu đen */
+    padding-bottom: 5px;
+}
+
+/* Tạo gạch dưới */
+header .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #000;           /* gạch dưới màu đen */
+    transition: width 0.25s ease-in-out;
+}
+
+/* Hover → hiện gạch dưới */
+header .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hover: KHÔNG đổi màu chữ (giữ đen) */
+header .nav-link:hover {
+    color: #000 !important;
+}
+
+

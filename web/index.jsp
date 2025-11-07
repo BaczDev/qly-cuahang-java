@@ -4,51 +4,94 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    .equal-col {
-        display: flex;
+    .equal-col, .equal-card {
+        height: auto !important;
     }
-    .equal-card {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
+
     /* ✅ Màu chấm tròn (indicator) đen */
-.carousel-indicators [data-bs-target] {
-    background-color: black !important;
-}
+    .carousel-indicators [data-bs-target] {
+        background-color: black !important;
+    }
 
-/* ✅ Khi chấm tròn active → đen luôn */
-.carousel-indicators .active {
-    background-color: black !important;
-}
+    /* ✅ Khi chấm tròn active → đen luôn */
+    .carousel-indicators .active {
+        background-color: black !important;
+    }
 
-/* ✅ Mũi tên chuyển slide (prev/next) màu đen */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(1) brightness(0%) !important; 
-}
+    /* ✅ Mũi tên chuyển slide (prev/next) màu đen */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(1) brightness(0%) !important;
+    }
 
-/* ✅ Tăng độ đậm cho mũi tên */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 2rem;
-    height: 2rem;
-}
+    /* ✅ Tăng độ đậm cho mũi tên */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+    .btn-detail, .btn-add {
+        font-size: 13px;          /* Chữ nhỏ lại */
+        padding: 8px 0;           /* Giảm chiều cao */
+        border-radius: 8px;       /* Bo tròn nút */
+        transition: 0.25s ease;   /* Hiệu ứng hover mượt */
+        font-weight: 500;
+    }
+
+    /* Màu nút */
+    .btn-detail {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .btn-add {
+        background-color: #198754;
+        color: white;
+    }
+
+    /* Hover */
+    .btn-detail:hover {
+        background-color: #0b5ed7;
+        transform: translateY(-2px);
+    }
+
+    .btn-add:hover {
+        background-color: #157347;
+        transform: translateY(-2px);
+    }
+    .card {
+        transition: 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);      
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);   
+        cursor: pointer;
+    }
+    .card img {
+        transition: 0.3s ease;
+    }
+
+    .card:hover img {
+        transform: scale(1.05);
+    }
+
+
 </style>
 
 <%
     List<String> categories = Arrays.asList(
-        "Card mạng","Gateway","Load Balancer","Modem","Network Security Appliance",
-        "PoE Injector/Switch","Repeater/Range Extender","Router","Switch","Wireless Access Point"
+            "Card mạng", "Gateway", "Load Balancer", "Modem", "Network Security Appliance",
+            "PoE Injector/Switch", "Repeater/Range Extender", "Router", "Switch", "Wireless Access Point"
     );
 
     List<Map<String, String>> products = Arrays.asList(
-        Map.of("name", "Router Wi-Fi AX6000", "price", "2.500.000đ", "img", "assets/img/router.jpg", "id", "101"),
-        Map.of("name", "Switch PoE 8 cổng Gigabit", "price", "1.850.000đ", "img", "assets/img/switch.jpg", "id", "102"),
-        Map.of("name", "Wireless Access Point AC1200", "price", "890.000đ", "img", "assets/img/ap.jpg", "id", "103"),
-        Map.of("name", "Modem Cáp quang GPON", "price", "600.000đ", "img", "assets/img/modem.jpg", "id", "104"),
-        Map.of("name", "Load Balancer cấp doanh nghiệp", "price", "15.000.000đ", "img", "assets/img/lb.jpg", "id", "105"),
-        Map.of("name", "Card mạng 10 Gigabit", "price", "3.200.000đ", "img", "assets/img/nic.jpg", "id", "106")
+            Map.of("name", "Router Wi-Fi AX6000", "price", "2.500.000đ", "img", "https://chuyendoiquang.com/pub/media/catalog/category/bannerthietbimang.jpg", "id", "101"),
+            Map.of("name", "Switch PoE 8 cổng Gigabit", "price", "1.850.000đ", "img", "assets/img/switch.jpg", "id", "102"),
+            Map.of("name", "Wireless Access Point AC1200", "price", "890.000đ", "img", "assets/img/ap.jpg", "id", "103"),
+            Map.of("name", "Modem Cáp quang GPON", "price", "600.000đ", "img", "assets/img/modem.jpg", "id", "104"),
+            Map.of("name", "Load Balancer cấp doanh nghiệp", "price", "15.000.000đ", "img", "assets/img/lb.jpg", "id", "105"),
+            Map.of("name", "Card mạng 10 Gigabit", "price", "3.200.000đ", "img", "assets/img/nic.jpg", "id", "106")
     );
 %>
 <!-- ✅ BANNER CAROUSEL -->
@@ -93,7 +136,7 @@
 <div class="container my-4">
 
     <!-- ✅ Tiêu đề tách ra, KHÔNG nằm trong col bên phải -->
-    <h3 class="mb-4 text-center text-uppercase text-primary">
+    <h3 class="mb-4 text-center text-uppercase text-black">
         Danh sách sản phẩm
     </h3>
 
@@ -109,15 +152,15 @@
 
                 <ul class="list-group list-group-flush">
                     <% for (int i = 0; i < categories.size(); i++) {
-                        String name = categories.get(i);
-                        String slug = name.toLowerCase().replaceAll("[^a-z0-9]+", "-");
+                            String name = categories.get(i);
+                            String slug = name.toLowerCase().replaceAll("[^a-z0-9]+", "-");
                     %>
-                        <li class="list-group-item">
-                            <a href="category.jsp?slug=<%= slug %>&id=<%= i+1 %>" 
-                               class="text-decoration-none text-dark">
-                                <%= name %>
-                            </a>
-                        </li>
+                    <li class="list-group-item">
+                        <a href="category.jsp?slug=<%= slug%>&id=<%= i + 1%>" 
+                           class="text-decoration-none text-dark">
+                            <%= name%>
+                        </a>
+                    </li>
                     <% } %>
                 </ul>
             </div>
@@ -128,28 +171,36 @@
             <div class="equal-card">
 
                 <div class="row">
-                    <% for (Map<String,String> p : products) { %>
+                    <% for (Map<String, String> p : products) {%>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 shadow-sm">
 
-                            <img src="<%= p.get("img") %>"
+                            <img src="<%= p.get("img")%>"
                                  class="card-img-top"
                                  style="height:200px;object-fit:contain;padding:10px;">
 
                             <div class="card-body d-flex flex-column">
-                                <h5 class="text-truncate"><%= p.get("name") %></h5>
+                                <h5 class="text-truncate"><%= p.get("name")%></h5>
 
-                                <p class="text-danger fw-bold mt-auto"><%= p.get("price") %></p>
+                                <p class="text-danger fw-bold mt-auto"><%= p.get("price")%></p>
 
-                                <a href="product-detail.jsp?id=<%= p.get("id") %>"
-                                   class="btn btn-primary w-100">
-                                    Xem chi tiết
-                                </a>
+                                <div class="d-flex gap-2 mt-3">
+                                    <a href="product-detail.jsp?id=<%= p.get("id")%>"
+                                       class="btn btn-detail flex-fill">
+                                        Xem chi tiết
+                                    </a>
+
+                                    <a href="add-to-cart.jsp?id=<%= p.get("id")%>"
+                                       class="btn btn-add flex-fill">
+                                        Thêm sản phẩm
+                                    </a>
+                                </div>
+
                             </div>
 
                         </div>
                     </div>
-                    <% } %>
+                    <% }%>
                 </div>
 
             </div>
