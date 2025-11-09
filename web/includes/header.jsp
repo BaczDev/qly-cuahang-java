@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
-<header class="py-3 mb-4 border-bottom" style="background:#e5e5e5;">
+<header class="py-3 mb-2 border-bottom" style="background:#e5e5e5;">
 
     <div class="container d-flex flex-wrap align-items-center justify-content-between">
 
